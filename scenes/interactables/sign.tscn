@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/npc.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.541, 0.353, 0.212, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2"]
+size = Vector3(1.4, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3"]
+material = SubResource("StandardMaterial3D_1")
+size = Vector3(0.12, 1.2, 0.12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4"]
+material = SubResource("StandardMaterial3D_1")
+size = Vector3(0.8, 0.45, 0.06)
+
+[node name="Sign" type="Area3D"]
+script = ExtResource("1")
+speaker = ""
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.000, 0.000)
+shape = SubResource("BoxShape3D_2")
+
+[node name="Post" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.600, -0.400)
+mesh = SubResource("BoxMesh_3")
+
+[node name="Board" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.150, -0.360)
+mesh = SubResource("BoxMesh_4")

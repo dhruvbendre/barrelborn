@@ -1,0 +1,511 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/room.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/world/side_camera.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4"]
+[ext_resource type="Material" path="res://resources/materials/sea.tres" id="5"]
+[ext_resource type="Script" path="res://scripts/world/hazard.gd" id="6"]
+[ext_resource type="PackedScene" path="res://assets/environment/dock_2m.glb" id="7"]
+[ext_resource type="PackedScene" path="res://assets/environment/stone_block_1m.glb" id="8"]
+[ext_resource type="Script" path="res://scripts/world/moving_platform.gd" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/interactables/crate.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/interactables/checkpoint.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/bilge_brute.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://assets/environment/house_a.glb" id="13"]
+[ext_resource type="PackedScene" path="res://assets/environment/house_b.glb" id="14"]
+[ext_resource type="PackedScene" path="res://assets/environment/house_c.glb" id="15"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.435, 0.714, 0.910, 1)
+sky_horizon_color = Color(0.812, 0.914, 0.949, 1)
+ground_bottom_color = Color(0.949, 0.831, 0.608, 1)
+ground_horizon_color = Color(0.812, 0.914, 0.949, 1)
+
+[sub_resource type="Sky" id="Sky_2"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_3"]
+background_mode = 2
+sky = SubResource("Sky_2")
+ambient_light_source = 2
+reflected_light_source = 1
+ambient_light_color = Color(0.435, 0.714, 0.910, 1)
+ambient_light_energy = 0.42
+tonemap_mode = 3
+tonemap_exposure = 1.0
+fog_enabled = true
+fog_light_color = Color(0.812, 0.914, 0.949, 1)
+fog_density = 0.0015
+adjustment_enabled = true
+adjustment_saturation = 1.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4"]
+material = ExtResource("5")
+size = Vector2(400, 120)
+subdivide_width = 160
+subdivide_depth = 48
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5"]
+size = Vector3(124.000, 2.000, 6.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6"]
+size = Vector3(26.000, 1.200, 4.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7"]
+size = Vector3(1.000, 1.000, 1.600)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8"]
+albedo_color = Color(0.690, 0.478, 0.290, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_9"]
+material = SubResource("StandardMaterial3D_8")
+size = Vector3(1.000, 1.000, 1.600)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10"]
+size = Vector3(2.000, 2.000, 3.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11"]
+size = Vector3(19.000, 1.200, 4.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12"]
+size = Vector3(16.000, 1.200, 4.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13"]
+size = Vector3(2.500, 0.500, 3.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14"]
+size = Vector3(9.000, 2.000, 3.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15"]
+size = Vector3(1.000, 7.000, 4.000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16"]
+size = Vector3(1.000, 9.000, 4.000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_17"]
+albedo_color = Color(0.541, 0.353, 0.212, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_18"]
+material = SubResource("StandardMaterial3D_17")
+size = Vector3(0.300, 2.400, 0.300)
+
+[sub_resource type="BoxMesh" id="BoxMesh_19"]
+material = SubResource("StandardMaterial3D_8")
+size = Vector3(2.200, 0.400, 2.400)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20"]
+size = Vector3(2.200, 0.400, 2.400)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21"]
+albedo_color = Color(0.812, 0.659, 0.455, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_22"]
+material = SubResource("StandardMaterial3D_21")
+size = Vector3(80.000, 1.600, 1.200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23"]
+albedo_color = Color(0.561, 0.478, 0.353, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_24"]
+material = SubResource("StandardMaterial3D_23")
+size = Vector3(16.000, 16.000, 10.000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25"]
+albedo_color = Color(0.435, 0.604, 0.290, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_26"]
+material = SubResource("StandardMaterial3D_25")
+size = Vector3(16.400, 0.400, 10.400)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27"]
+albedo_color = Color(0.788, 0.651, 0.420, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_28"]
+material = SubResource("StandardMaterial3D_27")
+size = Vector3(0.220, 0.900, 0.220)
+
+[node name="DockTest" type="Node3D"]
+script = ExtResource("1")
+objective = "Reach the far end of the dock"
+room_id = "dock_test"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.3746, 0.6556, -0.6556, 0.0000, 0.7071, 0.7071, 0.9272, -0.2649, 0.2649, 0, 10, 0)
+light_energy = 0.85
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="Player" parent="." instance=ExtResource("2")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.500, 0.000)
+
+[node name="Camera" type="Camera3D" parent="."]
+script = ExtResource("3")
+fov = 38.0
+current = true
+target_path = NodePath("../Player")
+limit_min = Vector2(-2, 0)
+limit_max = Vector2(62, 4)
+
+[node name="HUD" parent="." instance=ExtResource("4")]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="Sea" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 58.000, -0.900, -45.000)
+mesh = SubResource("PlaneMesh_4")
+
+[node name="KillWater" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("6")
+
+[node name="Shape" type="CollisionShape3D" parent="KillWater"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 30.000, -2.200, 0.000)
+shape = SubResource("BoxShape3D_5")
+
+[node name="DockA" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 5.000, -0.600, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/DockA"]
+shape = SubResource("BoxShape3D_6")
+
+[node name="Kit0" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -12.000, 0.600, 0.000)
+
+[node name="Kit1" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -10.000, 0.600, 0.000)
+
+[node name="Kit2" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -8.000, 0.600, 0.000)
+
+[node name="Kit3" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -6.000, 0.600, 0.000)
+
+[node name="Kit4" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -4.000, 0.600, 0.000)
+
+[node name="Kit5" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -2.000, 0.600, 0.000)
+
+[node name="Kit6" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 0.000, 0.600, 0.000)
+
+[node name="Kit7" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 2.000, 0.600, 0.000)
+
+[node name="Kit8" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 4.000, 0.600, 0.000)
+
+[node name="Kit9" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 6.000, 0.600, 0.000)
+
+[node name="Kit10" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 8.000, 0.600, 0.000)
+
+[node name="Kit11" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 10.000, 0.600, 0.000)
+
+[node name="Kit12" parent="Level/DockA" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 12.000, 0.600, 0.000)
+
+[node name="Step1" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 12.000, 0.500, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/Step1"]
+shape = SubResource("BoxShape3D_7")
+
+[node name="Mesh" type="MeshInstance3D" parent="Level/Step1"]
+mesh = SubResource("BoxMesh_9")
+
+[node name="Ledge1" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 14.500, 1.000, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/Ledge1"]
+shape = SubResource("BoxShape3D_10")
+
+[node name="Kit" parent="Level/Ledge1" instance=ExtResource("8")]
+transform = Transform3D(2.0, 0, 0, 0, 2.0, 0, 0, 0, 1.0, 0.000, 1.000, 0.000)
+
+[node name="DockB" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 30.500, -0.600, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/DockB"]
+shape = SubResource("BoxShape3D_11")
+
+[node name="Kit0" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, -8.550, 0.600, 0.000)
+
+[node name="Kit1" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, -6.650, 0.600, 0.000)
+
+[node name="Kit2" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, -4.750, 0.600, 0.000)
+
+[node name="Kit3" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, -2.850, 0.600, 0.000)
+
+[node name="Kit4" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, -0.950, 0.600, 0.000)
+
+[node name="Kit5" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, 0.950, 0.600, 0.000)
+
+[node name="Kit6" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, 2.850, 0.600, 0.000)
+
+[node name="Kit7" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, 4.750, 0.600, 0.000)
+
+[node name="Kit8" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, 6.650, 0.600, 0.000)
+
+[node name="Kit9" parent="Level/DockB" instance=ExtResource("7")]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 1, 8.550, 0.600, 0.000)
+
+[node name="DockC" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 56.000, -0.600, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/DockC"]
+shape = SubResource("BoxShape3D_12")
+
+[node name="Kit0" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -7.000, 0.600, 0.000)
+
+[node name="Kit1" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -5.000, 0.600, 0.000)
+
+[node name="Kit2" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -3.000, 0.600, 0.000)
+
+[node name="Kit3" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, -1.000, 0.600, 0.000)
+
+[node name="Kit4" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 1.000, 0.600, 0.000)
+
+[node name="Kit5" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 3.000, 0.600, 0.000)
+
+[node name="Kit6" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 5.000, 0.600, 0.000)
+
+[node name="Kit7" parent="Level/DockC" instance=ExtResource("7")]
+transform = Transform3D(1.0, 0, 0, 0, 1, 0, 0, 0, 1, 7.000, 0.600, 0.000)
+
+[node name="Ceiling" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 51.250, 3.150, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/Ceiling"]
+shape = SubResource("BoxShape3D_13")
+
+[node name="Kit" parent="Level/Ceiling" instance=ExtResource("8")]
+transform = Transform3D(2.5, 0, 0, 0, 0.5, 0, 0, 0, 1.0, 0.000, 0.250, 0.000)
+
+[node name="LedgeC" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 59.500, 1.000, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/LedgeC"]
+shape = SubResource("BoxShape3D_14")
+
+[node name="Kit" parent="Level/LedgeC" instance=ExtResource("8")]
+transform = Transform3D(9, 0, 0, 0, 2.0, 0, 0, 0, 1.0, 0.000, 1.000, 0.000)
+
+[node name="WallL" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -8.000, 2.500, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/WallL"]
+shape = SubResource("BoxShape3D_15")
+
+[node name="Kit" parent="Level/WallL" instance=ExtResource("8")]
+transform = Transform3D(1.0, 0, 0, 0, 7.0, 0, 0, 0, 1.3333333333333333, 0.000, 3.500, 0.000)
+
+[node name="WallR" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 64.500, 3.500, 0.000)
+
+[node name="Shape" type="CollisionShape3D" parent="Level/WallR"]
+shape = SubResource("BoxShape3D_16")
+
+[node name="Kit" parent="Level/WallR" instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 9.0, 0, 0, 0, 1.3333333333333333, 0.000, 4.500, 0.000)
+
+[node name="Pile0" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -6.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile1" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -3.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile2" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile3" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 3.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile4" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 6.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile5" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 9.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile6" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 12.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile7" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 15.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile8" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 18.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile9" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 21.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile10" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 24.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile11" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 27.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile12" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 30.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile13" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 33.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile14" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 36.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile15" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 39.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile18" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 48.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile19" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 51.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile20" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 54.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile21" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 57.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile22" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 60.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="Pile23" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 63.000, -1.500, 1.600)
+mesh = SubResource("BoxMesh_18")
+
+[node name="MovingPlatform" type="AnimatableBody3D" parent="Level"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 41.500, -0.200, 0.000)
+script = ExtResource("9")
+offset = Vector3(5, 0, 0)
+period = 4.5
+
+[node name="Mesh" type="MeshInstance3D" parent="Level/MovingPlatform"]
+mesh = SubResource("BoxMesh_19")
+
+[node name="Shape" type="CollisionShape3D" parent="Level/MovingPlatform"]
+shape = SubResource("BoxShape3D_20")
+
+[node name="Crate1" parent="Level" instance=ExtResource("10")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 6.000, 0.000, 0.000)
+
+[node name="Crate2" parent="Level" instance=ExtResource("10")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 7.000, 0.000, 0.000)
+
+[node name="Crate3" parent="Level" instance=ExtResource("10")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 6.500, 0.900, 0.000)
+
+[node name="Checkpoint" parent="Level" instance=ExtResource("11")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 24.000, 0.000, 0.000)
+
+[node name="Brute" parent="Level" instance=ExtResource("12")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 33.000, 0.100, 0.000)
+
+[node name="Start" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.200, 0.000)
+
+[node name="House0" parent="Decor" instance=ExtResource("13")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -2.000, 0.000, -10.000)
+
+[node name="House1" parent="Decor" instance=ExtResource("14")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 5.000, 0.000, -10.000)
+
+[node name="House2" parent="Decor" instance=ExtResource("15")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 12.000, 0.000, -10.000)
+
+[node name="House3" parent="Decor" instance=ExtResource("13")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 27.000, 0.000, -10.000)
+
+[node name="House4" parent="Decor" instance=ExtResource("14")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 35.000, 0.000, -10.000)
+
+[node name="House5" parent="Decor" instance=ExtResource("15")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 52.000, 0.000, -10.000)
+
+[node name="SeaWall" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 28.000, -0.400, -2.800)
+mesh = SubResource("BoxMesh_22")
+
+[node name="Cliff" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 68.000, 4.000, -8.000)
+mesh = SubResource("BoxMesh_24")
+
+[node name="CliffGrass" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 68.000, 12.200, -8.000)
+mesh = SubResource("BoxMesh_26")
+
+[node name="Post0" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 3.000, 0.450, 1.500)
+mesh = SubResource("BoxMesh_28")
+
+[node name="Post1" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 9.000, 0.450, 1.500)
+mesh = SubResource("BoxMesh_28")
+
+[node name="Post2" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 26.000, 0.450, 1.500)
+mesh = SubResource("BoxMesh_28")
+
+[node name="Post3" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 31.000, 0.450, 1.500)
+mesh = SubResource("BoxMesh_28")
+
+[node name="Post4" type="MeshInstance3D" parent="Decor"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 37.000, 0.450, 1.500)
+mesh = SubResource("BoxMesh_28")

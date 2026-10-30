@@ -1,0 +1,16 @@
+# Godot cache / build output
+.godot/
+build/
+*.tmp
+export_credentials.cfg
+
+# Machine-specific tooling config
+.codegpt-game.json
+
+# Verbose Codex run logs (task files and .report.md are kept)
+art_source/generation_records/*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.blend1

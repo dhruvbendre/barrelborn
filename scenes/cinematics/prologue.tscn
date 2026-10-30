@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cinematics/prologue.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2"]
+[ext_resource type="Material" path="res://resources/materials/sea.tres" id="3"]
+[ext_resource type="PackedScene" path="res://assets/characters/kito/kito.glb" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/interactables/barrel.tscn" id="5"]
+[ext_resource type="Theme" path="res://resources/ui/theme.tres" id="6"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.114, 0.184, 0.29, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.235, 0.345, 0.451, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.235, 0.345, 0.451, 1)
+fog_density = 0.02
+
+[sub_resource type="PlaneMesh" id="sea"]
+material = ExtResource("3")
+size = Vector2(200, 120)
+subdivide_width = 120
+subdivide_depth = 60
+
+[sub_resource type="StandardMaterial3D" id="cliff"]
+albedo_color = Color(0.56, 0.48, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="grass"]
+albedo_color = Color(0.44, 0.6, 0.29, 1)
+
+[sub_resource type="BoxMesh" id="rock"]
+material = SubResource("cliff")
+size = Vector3(8, 5, 6)
+
+[sub_resource type="BoxMesh" id="top"]
+material = SubResource("grass")
+size = Vector3(8.4, 0.5, 6.4)
+
+[node name="Prologue" type="Node3D"]
+script = ExtResource("1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8, 0.35, -0.48, 0, 0.81, 0.59, 0.6, -0.47, 0.64, 0, 10, 0)
+light_energy = 0.35
+shadow_enabled = true
+
+[node name="Sea" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -30)
+mesh = SubResource("sea")
+
+[node name="Barrel" parent="." instance=ExtResource("5")]
+freeze = true
+
+[node name="Kito" parent="Barrel" instance=ExtResource("4")]
+editor_description = "Kito peeking out of his barrel (body hidden by the staves)."
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.42, 0)
+
+[node name="Island" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -22)
+
+[node name="Rock" type="MeshInstance3D" parent="Island"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("rock")
+
+[node name="Top" type="MeshInstance3D" parent="Island"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+mesh = SubResource("top")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985, 0.174, 0, -0.174, 0.985, 0, 1.6, 9)
+current = true
+fov = 40.0
+
+[node name="HUD" parent="." instance=ExtResource("2")]
+
+[node name="SkipLayer" type="CanvasLayer" parent="."]
+layer = 11
+
+[node name="Skip" type="Button" parent="SkipLayer"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme = ExtResource("6")
+text = "Skip  (Esc)"

@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/pickup.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(1.000, 0.851, 0.400, 1)
+emission_enabled = true
+emission = Color(1, 0.75, 0.25, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2"]
+albedo_color = Color(0.851, 0.878, 0.918, 1)
+metallic = 0.6
+roughness = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4"]
+material = SubResource("StandardMaterial3D_2")
+size = Vector3(0.06, 0.6, 0.03)
+
+[sub_resource type="TorusMesh" id="TorusMesh_5"]
+material = SubResource("StandardMaterial3D_1")
+inner_radius = 0.42
+outer_radius = 0.48
+
+[node name="Pickup" type="Area3D"]
+script = ExtResource("1")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.800, 0.000)
+shape = SubResource("SphereShape3D_3")
+
+[node name="Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.000, 0.000)
+mesh = SubResource("BoxMesh_4")
+editor_description = "PROXY item icon"
+
+[node name="Halo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.0, 0)
+mesh = SubResource("TorusMesh_5")

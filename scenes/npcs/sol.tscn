@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/npc.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/sol/sol.glb" id="2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(2, 2.4, 2)
+
+[node name="Sol" type="Area3D"]
+script = ExtResource("1")
+speaker = "Sol"
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.200, 0.000)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Visual" type="Node3D" parent="."]
+transform = Transform3D(0.825, 0, -0.565, 0, 1, 0, 0.565, 0, 0.825, 0, 0, 0)
+
+[node name="Model" parent="Visual" instance=ExtResource("2")]

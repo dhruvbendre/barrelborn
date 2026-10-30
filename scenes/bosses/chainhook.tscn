@@ -1,0 +1,81 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/bosses/chainhook.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/chainhook/chainhook.glb" id="2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.6
+height = 2.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2"]
+albedo_color = Color(0.357, 0.165, 0.431, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+albedo_color = Color(0.851, 0.647, 0.192, 1)
+metallic = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4"]
+albedo_color = Color(0.227, 0.227, 0.259, 1)
+metallic = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5"]
+albedo_color = Color(0.788, 0.541, 0.416, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6"]
+albedo_color = Color(0.102, 0.102, 0.133, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7"]
+albedo_color = Color(0.498, 0.953, 1.000, 1)
+emission_enabled = true
+emission = Color(0.5, 0.95, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_8"]
+material = SubResource("StandardMaterial3D_7")
+inner_radius = 0.3
+outer_radius = 0.38
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_9"]
+radius = 0.55
+
+[sub_resource type="TorusMesh" id="TorusMesh_10"]
+material = SubResource("StandardMaterial3D_4")
+inner_radius = 0.22
+outer_radius = 0.45
+
+[sub_resource type="BoxMesh" id="BoxMesh_11"]
+material = SubResource("StandardMaterial3D_4")
+size = Vector3(0.09, 1, 0.09)
+
+[node name="Chainhook" type="CharacterBody3D"]
+script = ExtResource("1")
+collision_layer = 4
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.300, 0.000)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Visual" type="Node3D" parent="."]
+editor_description = "Rigged Chainhook model"
+
+[node name="Model" parent="Visual" instance=ExtResource("2")]
+
+[node name="AimRing" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.75, 1.6, 0.6)
+mesh = SubResource("TorusMesh_8")
+
+[node name="Hook" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Shape" type="CollisionShape3D" parent="Hook"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.000, 0.000)
+shape = SubResource("SphereShape3D_9")
+
+[node name="Mesh" type="MeshInstance3D" parent="Hook"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.000, 0.000)
+mesh = SubResource("TorusMesh_10")
+
+[node name="Chain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.500, 0.000)
+mesh = SubResource("BoxMesh_11")

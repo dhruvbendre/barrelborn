@@ -1,0 +1,100 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/title.gd" id="1"]
+[ext_resource type="Theme" path="res://resources/ui/theme.tres" id="2"]
+
+[sub_resource type="Gradient" id="g"]
+colors = PackedColorArray(0.11, 0.18, 0.29, 1, 0.18, 0.7, 0.72, 1)
+
+[sub_resource type="GradientTexture2D" id="gt"]
+gradient = SubResource("g")
+fill_to = Vector2(0, 1)
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("gt")
+expand_mode = 1
+
+[node name="Box" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -210.0
+offset_right = 240.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Name" type="Label" parent="Box"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+theme_override_font_sizes/font_size = 64
+text = "BARRELBORN"
+horizontal_alignment = 1
+
+[node name="Tag" type="Label" parent="Box"]
+layout_mode = 2
+text = "A kid in a barrel. A dream the size of the sea."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Box"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="NewGame" type="Button" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="Quit" type="Button" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="Status" type="Label" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -60.0
+offset_right = 460.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Move: A/D or arrows   Jump: Space/W   Slash: J/X   Gale: L/C   Use: E   Pause: Esc   (gamepad supported)"
+horizontal_alignment = 1

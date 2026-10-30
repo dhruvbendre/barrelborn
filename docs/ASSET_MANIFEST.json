@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "status_legend": {
+    "proxy": "temporary blockout made of primitives; replace",
+    "generated": "produced by a tool, not yet reviewed",
+    "accepted": "reviewed and approved as reference or runtime asset",
+    "integrated": "used by the running game",
+    "blocked": "could not be produced; see notes",
+    "queued": "task file written, waiting to run"
+  },
+  "assets": [
+    {
+      "id": "char_kito_model",
+      "source": "Blender 4.5.10 script (tools/blender/build_kito.py + humanoid.py), built by a Claude subagent",
+      "task": "Rigged hero: 10,401 tris, 1 palette material, 23 joints, 12 in-place clips, cutlass bone-attached to hand.R",
+      "path": "assets/characters/kito/kito.glb",
+      "blend_source": "art_source/blender/kito.blend",
+      "previews": "art_source/blender/previews/kito_*.png",
+      "use": "Player character (scenes/player/player.tscn), prologue barrel",
+      "review": "accepted (visually reviewed in Blender previews and in-game screenshots)",
+      "integration": "integrated",
+      "notes": "Known: painted-decal face, some shorts/coat clipping in wide poses, FK-only feet slide. Cutlass hidden until item_cutlass."
+    },
+    {
+      "id": "char_brute_model",
+      "source": "Blender 4.5.10 script tools/blender/build_brute.py (humanoid.py), built by a Claude subagent; verified by re-import",
+      "path": "assets/characters/brute/brute.glb",
+      "use": "Bilge Brute melee enemy",
+      "review": "accepted (previews + in-game screenshots reviewed)",
+      "integration": "integrated",
+      "notes": "Known: Boots dip ~4 cm in recover crouch; left hand loosely meets club.",
+      "blend_source": "art_source/blender/brute.blend",
+      "previews": "art_source/blender/previews/brute_*.png",
+      "task": "Rigged character, 5968 tris, 1 palette material, height 1.335 m"
+    },
+    {
+      "id": "char_gunner_model",
+      "source": "Blender 4.5.10 script tools/blender/build_gunner.py (humanoid.py), built by a Claude subagent; verified by re-import",
+      "path": "assets/characters/gunner/gunner.glb",
+      "use": "Powder Gull ranged enemy",
+      "review": "accepted (previews + in-game screenshots reviewed)",
+      "integration": "integrated",
+      "notes": "Known: Hat brim hides eyes when looking down; coat clips in hop/death.",
+      "blend_source": "art_source/blender/gunner.blend",
+      "previews": "art_source/blender/previews/gunner_*.png",
+      "task": "Rigged character, 5864 tris, 1 palette material, height 1.986 m"
+    },
+    {
+      "id": "char_chainhook_model",
+      "source": "Blender 4.5.10 script tools/blender/build_chainhook.py (humanoid.py), built by a Claude subagent; verified by re-import",
+      "path": "assets/characters/chainhook/chainhook.glb",
+      "use": "Boss",
+      "review": "accepted (previews + in-game screenshots reviewed)",
+      "integration": "integrated",
+      "notes": "Known: Stick-like legs; thin plume; game-drawn chain anchors at a fixed hand offset.",
+      "blend_source": "art_source/blender/chainhook.blend",
+      "previews": "art_source/blender/previews/chainhook_*.png",
+      "task": "Rigged character, 11940 tris, 1 palette material, height 2.645 m"
+    },
+    {
+      "id": "char_bastian_model",
+      "source": "Blender 4.5.10 script tools/blender/build_bastian.py (humanoid.py), built by a Claude subagent; verified by re-import",
+      "path": "assets/characters/bastian/bastian.glb",
+      "use": "Mentor NPC",
+      "review": "accepted (previews + in-game screenshots reviewed)",
+      "integration": "integrated",
+      "blend_source": "art_source/blender/bastian.blend",
+      "previews": "art_source/blender/previews/bastian_*.png",
+      "task": "Rigged character, 7914 tris, 1 palette material, height 1.365 m",
+      "notes": "Known: No mouth animation; rigid apron."
+    },
+    {
+      "id": "char_sol_model",
+      "source": "Blender 4.5.10 script tools/blender/build_sol.py (humanoid.py), built by a Claude subagent; verified by re-import",
+      "path": "assets/characters/sol/sol.glb",
+      "use": "Navigator NPC",
+      "review": "accepted (previews + in-game screenshots reviewed)",
+      "integration": "integrated",
+      "blend_source": "art_source/blender/sol.blend",
+      "previews": "art_source/blender/previews/sol_*.png",
+      "task": "Rigged character, 7990 tris, 1 palette material, height 1.634 m",
+      "notes": "Known: Slightly short of 1.7 m target; stiff legs."
+    },
+    {
+      "id": "char_fisher_proxy",
+      "source": "tools/rooms/build_props.py",
+      "path": "scenes/npcs/fisher.tscn",
+      "use": "Ambient harbor NPC",
+      "review": "proxy",
+      "integration": "integrated"
+    },
+    {
+      "id": "env_rooms_blockout",
+      "source": "tools/rooms/build_chapter1.py, tools/rooms/build_rooms.py",
+      "path": "scenes/rooms/{harbor,cave,boss_deck,dock_test}.tscn",
+      "use": "Chapter 1 rooms + Milestone A test room",
+      "review": "partially replaced by kit",
+      "integration": "integrated",
+      "notes": "Ground runs, sea walls, cave ledges, houses, props, bunting and the Brine Dream now render with the environment kit; collision stays as generated boxes. Signs, gates, plates, chests and switches are still proxies."
+    },
+    {
+      "id": "props_blockout",
+      "source": "tools/rooms/build_props.py",
+      "path": "scenes/interactables/*.tscn",
+      "use": "Crate, chest, barrel, gate, switch, plate, door, sign, pickup, boulder",
+      "review": "proxy",
+      "integration": "integrated"
+    },
+    {
+      "id": "shader_sea",
+      "source": "hand-written",
+      "path": "shaders/sea.gdshader",
+      "use": "Stylized sea (Compatibility renderer)",
+      "review": "accepted",
+      "integration": "integrated"
+    },
+    {
+      "id": "audio_sfx_procedural",
+      "source": "scripts/world/sfx.gd (synthesized at runtime)",
+      "use": "Swing, hit, hurt, jump, land, break, coin, checkpoint, windup, enemy death, UI",
+      "review": "proxy (honest temporary)",
+      "integration": "integrated",
+      "license": "original, generated in code"
+    },
+    {
+      "id": "audio_music",
+      "source": "ACE-Step 1.5 (requested)",
+      "path": null,
+      "use": "Harbor theme, cave ambience, boss battle",
+      "review": "blocked",
+      "integration": "none",
+      "notes": "Not run: 5.3 GB free on C: vs >=6 GB for torch + smallest model; no CUDA GPU (AMD iGPU, 512 MB); system Python 3.10 (needs 3.11-3.12). No music in game yet."
+    },
+    {
+      "id": "concept_hero_3up",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/01_hero_concepts.md",
+      "path": "art_source/concepts/hero/hero_concepts_3up.png",
+      "use": "Hero direction selection",
+      "review": "queued",
+      "integration": "none",
+      "notes": "First attempts failed: (1) wrapper PATH issue, fixed; (2) default model gpt-6.1-sol rejected for ChatGPT auth, fixed with -m gpt-6-astra; (3) ChatGPT Codex usage limit hit, resets 20:38. Re-queued for 20:40."
+    },
+    {
+      "id": "concept_hero_turnaround",
+      "source": "Codex $imagegen (reference: Kito renders)",
+      "task": "tools/asset_tasks/02_hero_turnaround.md",
+      "path": "art_source/concepts/hero/kito_turnaround.png",
+      "use": "Model/texture reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_hero_expressions",
+      "source": "Codex $imagegen (reference: Kito renders)",
+      "task": "tools/asset_tasks/03_hero_expressions.md",
+      "path": "art_source/concepts/hero/kito_expressions.png",
+      "use": "Dialogue portraits reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_support_cast",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/04_support_cast.md",
+      "path": "art_source/concepts/cast/support_cast_sheet.png",
+      "use": "Sol + Bastian reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_boss",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/05_boss.md",
+      "path": "art_source/concepts/boss/chainhook_sheet.png",
+      "use": "Boss reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_enemies",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/06_enemies.md",
+      "path": "art_source/concepts/enemies/enemies_sheet.png",
+      "use": "Enemy reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_harbor_env",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/07_harbor_env.md",
+      "path": "art_source/concepts/environments/harbor_keyframe.png",
+      "use": "Environment kit reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "concept_props",
+      "source": "Codex $imagegen",
+      "task": "tools/asset_tasks/08_props.md",
+      "path": "art_source/concepts/props/ship_barrel_props.png",
+      "use": "Ship/barrel/prop reference",
+      "review": "queued",
+      "integration": "none"
+    },
+    {
+      "id": "env_kit_gullhaven",
+      "source": "Blender 4.5.10 script tools/blender/build_env_kit.py, built by a Claude subagent; verified by re-import",
+      "path": "assets/environment/*.glb (15 modules) + env_palette.png",
+      "blend_source": "art_source/blender/env_kit.blend",
+      "previews": "art_source/blender/previews/env_kit_sheet.png, env_harbor_mock.png",
+      "use": "Docks, sea wall, stone blocks, cave rock, 3 houses, crate, barrel, rope post, lamp, bunting, mast+sail, sloop, ship rail",
+      "review": "accepted (in-game screenshots reviewed)",
+      "integration": "integrated",
+      "notes": "Known: stretched stone_block_1m reads too pale/bevel-stretched on large ledges; per-GLB embedded palette copies; plain roofs/backs; boxy sloop hull."
+    }
+  ]
+}

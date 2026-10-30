@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/breakable.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="s"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="wood"]
+albedo_color = Color(0.62, 0.42, 0.24, 1)
+
+[sub_resource type="StandardMaterial3D" id="mark"]
+albedo_color = Color(0.95, 0.93, 0.85, 1)
+
+[sub_resource type="BoxMesh" id="m"]
+material = SubResource("wood")
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="BoxMesh" id="x"]
+material = SubResource("mark")
+size = Vector3(0.95, 0.1, 0.02)
+
+[node name="Crate" type="StaticBody3D"]
+script = ExtResource("1")
+coins = 1
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("s")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+mesh = SubResource("m")
+
+[node name="X1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707, 0.707, 0, -0.707, 0.707, 0, 0, 0, 1, 0, 0.45, 0.46)
+mesh = SubResource("x")
+
+[node name="X2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707, -0.707, 0, 0.707, 0.707, 0, 0, 0, 1, 0, 0.45, 0.46)
+mesh = SubResource("x")

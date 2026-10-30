@@ -1,0 +1,67 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interact/npc.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(2, 2.4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2"]
+albedo_color = Color(0.690, 0.478, 0.290, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3"]
+material = SubResource("StandardMaterial3D_2")
+radius = 0.24
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4"]
+albedo_color = Color(0.659, 0.443, 0.310, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5"]
+material = SubResource("StandardMaterial3D_4")
+radius = 0.18
+height = 0.36
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6"]
+albedo_color = Color(0.886, 0.761, 0.561, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7"]
+material = SubResource("StandardMaterial3D_6")
+top_radius = 0.05
+bottom_radius = 0.32
+height = 0.18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8"]
+albedo_color = Color(0.420, 0.255, 0.149, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_9"]
+material = SubResource("StandardMaterial3D_8")
+top_radius = 0.01
+bottom_radius = 0.025
+height = 2.0
+
+[node name="Fisher" type="Area3D"]
+script = ExtResource("1")
+speaker = "Old Fisher"
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.200, 0.000)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Visual" type="Node3D" parent="."]
+editor_description = "PROXY blockout of Old Fisher"
+
+[node name="Body" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 0.750, 0.000)
+mesh = SubResource("CapsuleMesh_3")
+
+[node name="Head" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.350, 0.000)
+mesh = SubResource("SphereMesh_5")
+
+[node name="Hat" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0.000, 1.550, 0.000)
+mesh = SubResource("CylinderMesh_7")
+
+[node name="Rod" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.5, 0.87, 0, -0.87, 0.5, 0, 0, 0, 1, -0.6, 1.4, 0.3)
+mesh = SubResource("CylinderMesh_9")

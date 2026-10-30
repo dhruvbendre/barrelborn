@@ -1,0 +1,50 @@
+; Engine configuration file.
+; Pinned engine: Godot 4.7.2 stable (see docs/DECISIONS.md).
+
+config_version=5
+
+[application]
+
+config/name="Barrelborn"
+config/description="2.5D pirate action-adventure. Working title."
+run/main_scene="res://scenes/ui/title.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Game="*res://scripts/progression/game.gd"
+Sfx="*res://scripts/world/sfx.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=0
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=false
+
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+3d_physics/layer_3="enemies"
+3d_physics/layer_4="interact"
+3d_physics/layer_5="hazard"
+
+[physics]
+
+common/physics_ticks_per_second=60
+common/max_physics_steps_per_frame=8
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=2

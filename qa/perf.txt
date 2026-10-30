@@ -1,0 +1,5 @@
+GPU: AMD Radeon(TM) Graphics
+Renderer: 3.3.0 Core Profile Context 23.19.14.08.240820
+harbor.tscn: avg 164 fps (6.09 ms), worst frame 17.5 ms, max draw calls 81, instantiate 229 ms, mem 75 MB
+cave.tscn: avg 234 fps (4.27 ms), worst frame 33.6 ms, max draw calls 57, instantiate 83 ms, mem 75 MB
+boss_deck.tscn: avg 190 fps (5.27 ms), worst frame 7.5 ms, max draw calls 57, instantiate 114 ms, mem 75 MB
