@@ -17,6 +17,9 @@ All results below were produced by actually running the commands on 2026-10-30.
 | Boss bot (real input actions, reacts to telegraphs only) | `tools\godot.cmd --headless --path . res://tests/boss_bot.tscn` | PASS: won in 20.7 s, 0 hits taken, reached phase 2 (at 12 HP it won in 8.8 s, so HP was raised to 30) |
 | Performance probe (this dev machine only) | `tools\godot.cmd --path . res://tests/perf_probe.tscn` → `qa/perf.txt` | AMD Radeon iGPU, GL 3.3, 1280x720, vsync off: harbor 164 fps avg / 17.5 ms worst; cave 234 fps / 33.6 ms worst (one hitch, likely a first-use shader compile, uninvestigated); boss deck 190 fps / 7.5 ms; ≤ 81 draw calls; ~75 MB static memory |
 
+| Web build (CI) | `.github/workflows/deploy.yml`: Godot 4.7.2 on ubuntu-latest → import → both test suites → `--export-release "Web"` → GitHub Pages | PASS (run 41172503323): build + deploy succeeded |
+| Web build in browser | gstack `browse` (headless Chromium, WebGL2) at https://dhruvbendre.github.io/barrelborn/ | PASS: title loads (Continue disabled with no save, Quit hidden on web), New Game → prologue renders, Esc skip → harbor renders with HUD; no console errors (only GPU-stall perf warnings from the screenshot readback). Files: index.wasm 39.5 MB, index.pck 1.7 MB. |
+
 ### What the logic tests cover
 - Jump math (g = 30, v0 = 12, simulated apex 2.30 m), buffered jump on landing, coyote jump at 0.05 s, no jump after coyote expiry, double jump.
 - One hit per target per swing (exactly 1, then 2 after a second swing); Bilge Brute dies in 3 slashes.
@@ -50,7 +53,6 @@ All results below were produced by actually running the commands on 2026-10-30.
 - **A human playthrough.** All play here is scripted. Feel, difficulty and first-time comprehension are unverified.
 - **Human boss fight.** The bot proves the fight is winnable with the intended reads, but it reads state perfectly. Human difficulty and timing are unverified.
 - **Moving-platform boarding by a human; carry/throw by hand** (puzzle logic is tested by placing the barrel).
-- **Browser export.** Export templates not installed (~1 GB download) and only 5.3 GB free. `export_presets.cfg` is ready.
 - **Touch on a real device; gamepad disconnect; focus loss.** Code paths exist (TouchScreenButton per-finger, focus-out pause and release) but no device/gamepad was available.
 - **Performance profiling on a target device.** Not measured; no claims made.
 - **Old-schema migration beyond v1.** Only v1 exists; future-version rejection is tested.

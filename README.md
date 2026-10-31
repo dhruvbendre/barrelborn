@@ -3,6 +3,9 @@
 A 2.5D pirate action-adventure in Godot 4.7.2. A kid floats ashore in a barrel, declares he'll be Pirate King, and takes on his first island. Chapter 1 (Gullhaven) is playable from start to finish with blockout art and a real rigged hero.
 
 ## Play
+**In the browser:** https://dhruvbendre.github.io/barrelborn/ (built and deployed by GitHub Actions on every push to `main`).
+
+Locally:
 ```
 tools\godot.cmd --path .
 ```
